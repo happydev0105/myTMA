@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import WebApp from "@twa-dev/sdk";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,7 +16,7 @@ function App() {
           />
         </a>
       </div>
-      <h1>My First Telegram Mini App</h1>
+      <h1>Telegram Mini App</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

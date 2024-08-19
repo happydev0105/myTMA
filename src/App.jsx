@@ -22,6 +22,17 @@ function App() {
           count is {count}
         </button>
       </div>
+      <div className="card">
+        <button
+          onClick={() => {
+            WebApp.openTelegramLink(
+              `https://t.me/share/url?url=http://t.me/YOUR_BOT_USERNAME?start=fren=${userId}`
+            );
+          }}
+        >
+          Invite friend
+        </button>;
+      </div>
       <div>
         <p>
           Click{" "}

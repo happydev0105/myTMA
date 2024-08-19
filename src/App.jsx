@@ -7,7 +7,7 @@ function App() {
   const [userId, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3002/api/data')
+    fetch('http://localhost:3001/api/data')
       .then(response => response.json()) // Use .text() to inspect the raw response
       .then(data => setMessage(data.userId))
       .catch(error => console.error('Error fetching data:', error));

@@ -6,7 +6,7 @@ const bot = new TelegramBot(token, { polling: true });
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 3002;
+const port = 3001;
 const cors = require('cors');
 
 app.use(cors());
@@ -23,8 +23,6 @@ bot.onText(/\/start/, async(msg) => {
     app.listen(port, () => {
       console.log(`Backend server is running on http://localhost:${port}`);
     });
-
-    console.log("userId:", chatId)
 
   try {
     const user = await getUser(chatId);

@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 const TelegramBot = require('node-telegram-bot-api');
 
-const token = 'YOUR_TELEGRAM_TOKEN';
+const token = '7482312025:AAFZK1C_uDzEf0xElvOL5R1vNk4kwUSkPlU';
 const bot = new TelegramBot(token, { polling: true });
 
 bot.onText(/\/start/, async(msg) => {
@@ -41,7 +41,7 @@ bot.onText(/\/start/, async(msg) => {
           {
             text: 'Open OctaClick',
            web_app:{
-             url: 'DEPLOYED_APP_URL'
+             url: 'https://my-tma-theta.vercel.app/'
            }
           }
         ]

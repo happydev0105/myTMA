@@ -26,12 +26,12 @@ function App() {
         <button
           onClick={() => {
             WebApp.openTelegramLink(
-              `https://t.me/share/url?url=http://t.me/YOUR_BOT_USERNAME?start=fren=${userId}`
+              `https://t.me/share/url?url=https://t.me/tmattbot_bot?start=fren=${userId}`
             );
           }}
         >
           Invite friend
-        </button>;
+        </button>
       </div>
       <div>
         <p>

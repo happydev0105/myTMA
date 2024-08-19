@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import WebApp from "@twa-dev/sdk";
-import chatId from "../server/bot"
 
 function App() {
   const [count, setCount] = useState(0);
@@ -28,7 +27,7 @@ function App() {
         <button
           onClick={() => {
             WebApp.openTelegramLink(
-              `https://t.me/share/url?url=https://t.me/tmattbot_bot?start=fren=${chatId}`
+              `https://t.me/share/url?url=https://t.me/tmattbot_bot?start=fren=${userID}`
             );
           }}
         >

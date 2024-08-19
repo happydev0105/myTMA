@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import WebApp from "@twa-dev/sdk";
 
 function App() {
   const [count, setCount] = useState(0);
-  // const userId = chatId;
+  const [userId, setMessage] = useState('');
+
+  useEffect(() => {
+    fetch('http://localhost:3001/api/data')
+      .then(response => response.json()) // Use .text() to inspect the raw response
+      .then(data => setMessage(data.userId))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
 
   return (
     <>
@@ -27,7 +34,7 @@ function App() {
         <button
           onClick={() => {
             WebApp.openTelegramLink(
-              `https://t.me/share/url?url=https://t.me/tmattbot_bot?start=fren=${userID}`
+              `https://t.me/share/url?url=https://t.me/tmattbot_bot?start=fren=${userId}`
             );
           }}
         >

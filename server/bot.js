@@ -3,11 +3,27 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '7482312025:AAFZK1C_uDzEf0xElvOL5R1vNk4kwUSkPlU';
 const bot = new TelegramBot(token, { polling: true });
 
-bot.onText(/\/start/, async(msg) => {
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = 3001;
+const cors = require('cors');
 
-  const chatId = msg.chat.id;
-  const user = msg.from;
-  console.log(`User started chat with ${user.username}, and chatId is ${chatId}`);
+app.use(cors());
+
+bot.onText(/\/start/, async(msg) => {
+    
+    const chatId = msg.chat.id;
+    const user = msg.from;
+    
+    app.get('/api/data', (req, res) => {
+      res.json({ userId: chatId });
+    });
+    
+    app.listen(port, () => {
+      console.log(`Backend server is running on http://localhost:${port}`);
+    });
+
   try {
     const user = await getUser(chatId);
     console.log(msg.text)

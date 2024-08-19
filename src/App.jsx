@@ -4,7 +4,7 @@ import WebApp from "@twa-dev/sdk";
 
 function App() {
   const [count, setCount] = useState(0);
-  const userId = "7399452776"
+  // const userId = chatId;
 
   return (
     <>
@@ -27,7 +27,7 @@ function App() {
         <button
           onClick={() => {
             WebApp.openTelegramLink(
-              `https://t.me/share/url?url=https://t.me/tmattbot_bot?start=fren=${userId}`
+              `https://t.me/share/url?url=https://t.me/tmattbot_bot?start=fren=${chatId}`
             );
           }}
         >

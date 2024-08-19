@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import WebApp from "@twa-dev/sdk";
+import chatId from "../server/bot"
 
 function App() {
   const [count, setCount] = useState(0);

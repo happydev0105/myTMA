@@ -4,6 +4,7 @@ import WebApp from "@twa-dev/sdk";
 
 function App() {
   const [count, setCount] = useState(0);
+  const userId = "7399452776"
 
   return (
     <>

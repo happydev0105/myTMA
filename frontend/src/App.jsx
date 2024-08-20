@@ -1,22 +1,36 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import WebApp from "@twa-dev/sdk";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [userId, setMessage] = useState('');
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/data')
-      .then(response => response.json()) // Use .text() to inspect the raw response
-      .then(data => setMessage(data.userId))
-      .catch(error => console.error('Error fetching data:', error));
+    const socket = new WebSocket("ws://localhost:3001/ws");
+
+    socket.onopen = () => {
+      console.log("WebSocket connection established.");
+    };
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setUserId(data.userId);
+    };
+
+    socket.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    return () => {
+      socket.close();
+    };
   }, []);
 
   return (
     <>
       <div>
-        <a href="https://tokenminds.co" target="_blank">
+        <a href="https://tokenminds.co" target="_blank" rel="noopener noreferrer">
           <img
             src={`https://framerusercontent.com/images/7Fjd4JhBn4XdPoBAztnI31U.webp`}
             className="logo"
@@ -24,13 +38,13 @@ function App() {
           />
         </a>
       </div>
-      <h1>Telegram Mini App</h1>
+      <h2>Telegram Mini App</h2>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
       </div>
-      <div className="card">
+      <div>
         <button
           onClick={() => {
             WebApp.openTelegramLink(
@@ -47,6 +61,7 @@ function App() {
           <a
             href="https://docs.ton.org/develop/dapps/telegram-apps/app-examples"
             target="_blank"
+            rel="noopener noreferrer"
           >
             here
           </a>{" "}

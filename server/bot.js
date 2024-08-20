@@ -16,13 +16,13 @@ bot.onText(/\/start/, async(msg) => {
     const chatId = msg.chat.id;
     const user = msg.from;
     
-    // app.get('/api/data', (req, res) => {
-    //   res.json({ userId: chatId });
-    // });
+    app.get('/api/data', (req, res) => {
+      res.json({ userId: chatId });
+    });
     
-    // app.listen(port, () => {
-    //   console.log(`Backend server is running on http://localhost:${port}`);
-    // });
+    app.listen(port, () => {
+      console.log(`Backend server is running on http://localhost:${port}`);
+    });
 
   try {
     const user = await getUser(chatId);

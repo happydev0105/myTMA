@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import WebApp from "@twa-dev/sdk";
-import MyComponent from './components/MyComponent';
-import { useTelegram } from 'react-telegram-web-app';
 
 function App() {
   const [count, setCount] = useState(0);
   const [userId, setMessage] = useState('');
-  const { user } = useTelegram();
 
   useEffect(() => {
     fetch('http://localhost:3001/api/data')
@@ -32,9 +29,6 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-      </div>
-      <div>
-        {user ? (<MyComponent />) : (<div>Loading...</div>)}
       </div>
       <div className="card">
         <button

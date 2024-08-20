@@ -3,29 +3,34 @@ import "./App.css";
 import WebApp from "@twa-dev/sdk";
 
 function App() {
+
   const [count, setCount] = useState(0);
-  const [userId, setUserId] = useState("");
+  const [walletAddress, setWalletAddress] = useState("");
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:3001/ws");
+    WebApp.ready();
+  }, []);
+
+  const requestWalletAddress = () => {
+    const socket = new WebSocket("ws://localhost:8080/ws");
 
     socket.onopen = () => {
-      console.log("WebSocket connection established.");
+      console.log("Connected to WebSocket server");
     };
 
     socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      setUserId(data.userId);
+      setWalletAddress(event.data);
+      console.log("Received wallet address:", event.data);
     };
 
     socket.onerror = (error) => {
       console.error("WebSocket error:", error);
     };
 
-    return () => {
-      socket.close();
+    socket.onclose = () => {
+      console.log("WebSocket connection closed");
     };
-  }, []);
+  };
 
   return (
     <>
@@ -45,15 +50,14 @@ function App() {
         </button>
       </div>
       <div>
-        <button
-          onClick={() => {
-            WebApp.openTelegramLink(
-              `https://t.me/share/url?url=https://t.me/tmattbot_bot?start=fren=${userId}`
-            );
-          }}
-        >
-          Invite friend
+        <button onClick={requestWalletAddress}>
+          Request Wallet Address
         </button>
+        {walletAddress && (
+          <div>
+            <p>Your wallet address: {walletAddress}</p>
+          </div>
+        )}
       </div>
       <div>
         <p>
